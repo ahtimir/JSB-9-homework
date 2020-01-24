@@ -14,7 +14,7 @@ function getResult(a,b,c) {
 	let d = (Math.pow(b, 2) - 4 * a * c);
 	if (d < 0) {
 		return [];
-	} else if (d = 0) {
+	} else if (d === 0) {
 		return [(-b / (2 * a))];
 	} else {
 		return [((-b + Math.sqrt(d)) / (2 * a)), 
@@ -33,7 +33,7 @@ function getAverageMark(marks){
 	let allMarksSum = 0;
 	if (marks.length > 5) {
 		marks.splice(5);
-		console.log("Внимание! Будет рассчитано среднее 5 оценок.");
+		console.log("Внимание! Будет рассчитано среднее арифметическое 5 оценок.");
 	}
 
 	for (let i = 0; i < marks.length; i++) {
@@ -51,7 +51,7 @@ function calculateDrinkTask(){
 }
 
 function askDrink(name,dateOfBirthday){
-	let yearOfBirth = ((new Date(dateOfBirthday)).getFullYear());
+	let yearOfBirth = dateOfBirthday.getFullYear();
 
 	if (((new Date()).getFullYear() - yearOfBirth) < 18) {
 		return `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`;
