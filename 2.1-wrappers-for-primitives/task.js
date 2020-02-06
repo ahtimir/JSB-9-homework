@@ -15,15 +15,16 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     parseInt(percent);
     parseInt(contribution);
     parseInt(amount);
-    let todayIs = new Date();
-    let months = Math.ceil(Math.abs(date.getTime() - todayIs.getTime()) / (1000 * 3600 * 24)) / 30;
+    const todayIs = new Date();
+    let months = Math.ceil(Math.abs(new Date(date).getTime() - todayIs.getTime()) / (1000 * 3600 * 24)) / 30;
     months = Math.floor(months); 
     console.log(months); 
-    let toReturn = amount - contribution;
-    let P = percent / 12;
+    const toReturn = amount - contribution;
+    const P = percent / 1200;
     let monthlyRate = toReturn * ((P + P / ((Math.pow((1 + P), months) - 1))));
-    console.log(monthlyRate);
-    return monthlyRate;    
+    let mortgage = (monthlyRate * months).toFixed(2);
+    console.log(`Ипотека вам выйдет в ${mortgage} ₽`);
+    return `Ипотека вам выйдет в ${mortgage} ₽`;    
 }
 
 function sayHello() {
