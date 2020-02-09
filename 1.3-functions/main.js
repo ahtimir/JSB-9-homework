@@ -47,62 +47,33 @@ let marks = {
 	poetry: [5, 3, 4],
 	chemistry: [3, 4],
 	french: [4, 4],
-	PE: [5, 5]
+	pE: [5, 5]
 }
+
+let finalResult = marks;
+let z = 0;
+
+function getAverageMark(data) {
+	let averageScore = 0;
+  for (let i = 0; i < data.length; i++) {
+		averageScore += data[i];
+	  }
+	averageScore = averageScore / data.length;
+  return averageScore;
+}  
 
 function getAverageScore(data) {
-	let allMarksSum = 0;
-	let calculatedMarks = [];
-	let averageScore = 0;
-	for (let prop in data) {
-		function getAverageMark(data){
-			for (let i = 0; i < data[prop].length; i++) {
-				allMarksSum += data[prop][i];
-			}
-			averageScore = allMarksSum / data[prop].length;
-			return averageScore;		
-		}
-	calculatedMarks.push(averageScore);
-	console.log(calculatedMarks);
-}
-} 
-
-getAverageScore(marks);
-//console.log(getAverageScore(marks));
-
-/*
-console.log(`Задача №3`);
-
-
-function getPersonData(secretData) {
-	let firstName,	
-		lastName, 
-		result
-
-	function exposeAgent(secretData) {
-		if (secretData.aaa === 0) {
-			firstName: 'Родриго';
-		} else {
-			firstName: 'Эмильо';
-		}
-
-		if (secretData.bbb === 0) {
-			lastName: 'Родриго';
-		} else {
-			lastName: 'Эмильо';
-		}
-		
-		}
-	
-		return {
-			firstName: exposeAgent(secretData.aaa),
-			lastName: exposeAgent(secretData.bbb)
-	}
+  let averageScore = 0;
+  let overAllScore = 0;
+  for (let prop in data) {
+    averageScore = getAverageMark(data[prop]);
+    finalResult[prop] =getAverageMark(data[prop]);
+    overAllScore = overAllScore + averageScore;
+    z++;
+  }
+  overAllScore = overAllScore / z;
+  finalResult['average'] = overAllScore;
+  return finalResult;
 }
 
-console.log(getPersonData({
-	aaa: 0,
-	bbb: 1
-}));*/
-
-
+console.log(getAverageScore(marks));
