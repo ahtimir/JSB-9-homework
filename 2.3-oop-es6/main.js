@@ -1,5 +1,5 @@
-//Задача 1
-
+'use strict'
+//Задача 1 
 let startDurability;
 
 class Weapon {
@@ -8,17 +8,17 @@ class Weapon {
   this.attack = attack;
   this.durability = durability;
   this.range = range;
+  this.startDurability = durability;
   }
   takeDamage(damage) {
     if ((this.durability - damage) >= 0) {
       this.durability = this.durability - damage;
     } else this.durability = 0;
   };
-  //нужно доделать
   getDamage() {
     if (this.durability === 0) {
       return 0;
-    } else if (this.durability >= 0.3 * startDurability) {
+    } else if (this.durability >= 0.3 * this.startDurability) {
       return this.attack;
     } else {
       return this.attack / 2;
@@ -89,13 +89,10 @@ function equipWeapon(activeWeapon) {
   console.log(`Экипировано оружие: ${activeWeapon.name}`)
   return startDurability;
 }
-//выбираем активное оружие
-equipWeapon(stormStaff);
 
-stormStaff.getDamage();
+console.log(bow.startDurability);
 
-//Задача 2
-
+//Задача 2 
 class Bow extends Weapon {
   constructor() {
   super({
@@ -157,34 +154,51 @@ console.log(bareHands.isBroken());
 class Longbow extends Bow {
   constructor() {
   super({
-    name: "Длинный лук", 
-    attack: 15, 
-    durability: bow.durability, 
-    range: 4
+    name: "Лук", 
+    attack: 10, 
+    durability: 200, 
+    range:3 
   });
+    this.name = "Длинный лук", 
+    this.attack = 15, 
+    this.durability = bow.durability, 
+    this.range = 4
   };
 };
 class Poleaxe extends Sword {
   constructor() {
   super({
-    name: "Секира", 
-    attack: 27, 
-    durability: 800, 
-    range: sword.range
+    name: "Меч", 
+    attack: 25, 
+    durability: 500, 
+    range: 1
   });
+    this.name = "Секира", 
+    this.attack = 27, 
+    this.durability = 800, 
+    this.range = sword.range
   };
 };
 class Stormstaff extends Staff {
   constructor() {
   super({
-    name: "Посох бури", 
-    attack: 15, 
-    durability: staff.durability, 
-    range:3
+    name: "Посох", 
+    attack: 8, 
+    durability: 300,
+    range: 2
   });
+    this.name = "Посох бури", 
+    this.attack = 15, 
+    this.durability = staff.durability, 
+    this.range = 3
   };
 };
 const coolLongBow = new Longbow();
 const coolPoleaxe = new Poleaxe();
-const coolStormstaff = new Staff();
+const coolStormstaff = new Stormstaff();
+
 console.log(coolLongBow.name);
+coolStormstaff.getDamage();
+console.log(coolStormstaff.name);
+coolStormstaff.isBroken();
+coolPoleaxe.getDamage();
